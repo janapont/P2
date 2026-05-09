@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from exceptions.custom_exceptions import(
+from custom_exceptions import (
     InvalidLicensePlateError,
     InvalidMatriculationDateError,
     InvalidMileageError,

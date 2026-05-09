@@ -1,5 +1,5 @@
 """Motorbike class, inherits from Vehicle."""
-from vehicles.vehicle import Vehicle
+from VEHICLES.vehicle import Vehicle
 from datetime import date
 class Motorbike(Vehicle):
     

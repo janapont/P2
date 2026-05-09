@@ -1,4 +1,4 @@
-from vehicles.vehicle import Vehicle
+from VEHICLES.vehicle import Vehicle
 from datetime import date
 
 class Truck(Vehicle):
