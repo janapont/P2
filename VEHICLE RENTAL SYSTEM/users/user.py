@@ -1,1 +1,0 @@
-"""User abstract base class."""
