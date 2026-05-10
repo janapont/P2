@@ -6,12 +6,14 @@ from DICE_SIMULATOR import report
 
 
 def ask_user_inputs():
+    """Ask the user for the number of throws and dice, and return both values"""
     n_throws = int(input("How many times do you want to throw the dice? (10 - 100000): "))
     n_dice = int(input("How many dice do you want to use? (1 or 2): "))
     return n_throws, n_dice
 
 
 def print_results(simulator):
+    """Print all statistical results from the simulation to the console"""
     print("\n--- RESULTS ---\n")
 
     most, least = stats.most_and_least_frequent(simulator)
@@ -36,6 +38,7 @@ def print_results(simulator):
 
 
 def show_all_plots(simulator):
+    """Display all four plots for the simulation results"""
     plots.plot_distribution(simulator)
     plots.plot_single_dice(simulator)
     plots.plot_pairs_vs_odds(simulator)
@@ -43,6 +46,7 @@ def show_all_plots(simulator):
 
 
 def main():
+    """Runs the simulation, prints the results, show plots and saves a PDF report (if the user wants to)"""
     try:
         n_throws, n_dice = ask_user_inputs()
         simulator = DiceSimulator(n_throws, n_dice)
