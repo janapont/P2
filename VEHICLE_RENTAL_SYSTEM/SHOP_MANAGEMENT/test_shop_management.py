@@ -2,7 +2,7 @@ import unittest
 from datetime import date
 
 from custom_exceptions import VehicleAlreadyRegistered
-from shop_management import ShopManagement
+from SHOP_MANAGEMENT.shop_management import ShopManagement
 
 from VEHICLES.CAR.car import Car
 from VEHICLES.MOTORBIKE.motorbike import Motorbike

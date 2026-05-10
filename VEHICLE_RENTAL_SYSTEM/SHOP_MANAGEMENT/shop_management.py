@@ -1,4 +1,4 @@
-from ..custom_exceptions import VehicleAlreadyRegistered
+from custom_exceptions import VehicleAlreadyRegistered
 
 class ShopManagement:
     def __init__(self):
@@ -10,4 +10,6 @@ class ShopManagement:
                 raise VehicleAlreadyRegistered()
         self.__vehicles.append(vehicle)
 
+    def get_vehicles(self):
+        return self.__vehicles
         
