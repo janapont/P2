@@ -62,6 +62,7 @@ class Client(User):
 
 
 def client_from_csv_line(line, vehicles):
+    from datetime import date
     parts = line.strip().split(",")
 
     name = parts[0]
