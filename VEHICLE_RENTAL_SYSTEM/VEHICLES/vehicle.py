@@ -10,12 +10,13 @@ from datetime import date
 
 class Vehicle(ABC):
     def __init__(self, brand, color, license_plate, model, matriculation_date, mileage):
-        if not isinstance(mileage, int) or mileage < 0:
-            raise InvalidMileageError()
-        if (len(license_plate) != 7  or not license_plate[:4].isdigit() or not license_plate[4:].isalpha()  or not license_plate[4:].isupper()):
-            raise InvalidLicensePlateError()
         if not isinstance(license_plate, str):
             raise InvalidLicensePlateError()
+        if (len(license_plate) != 7 or not license_plate[:4].isdigit() 
+            or not license_plate[4:].isalpha() or not license_plate[4:].isupper()):
+            raise InvalidLicensePlateError()
+        if not isinstance(mileage, int) or isinstance(mileage, bool) or mileage < 0:
+            raise InvalidMileageError()
         if not isinstance(matriculation_date, date) or matriculation_date > date.today():
             raise InvalidMatriculationDateError()
                 
@@ -73,8 +74,8 @@ class Vehicle(ABC):
         except ValueError:
             return base_date.replace(year=new_year, month=new_month, day=28) #per dies que no existeixen al mes (tots els messos tenen al menys 28)
         
-    def register_maintenance(self, date, km):
-        self.__last_maintenance_date = date
+    def register_maintenance(self, d, km):
+        self.__last_maintenance_date = d
         self.__last_maintenance_mileage = km
 
     def get_brand(self):
