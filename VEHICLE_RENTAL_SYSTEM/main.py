@@ -23,4 +23,5 @@ orden carga:
 3. Cargar admins.csv
 4. Cargar rentals.csv
 
+guardar todo el sistema:shop.save_all_csv()
 """

@@ -8,11 +8,15 @@ from custom_exceptions import (
 )
 
 class Rental:
-    def __init__(self, rental_id, vehicle, user, start_date, end_date, kms_allowed, assurance):
+    def __init__(self, rental_id, vehicle, user, start_date, end_date, kms_allowed, assurance, kms_done=0):
         if not isinstance(start_date, date) or not isinstance(end_date, date) or end_date <= start_date:
             raise InvalidRentalPeriod()
         if not isinstance(kms_allowed, int) or kms_allowed <= 0:
             raise InvalidKms()
+        if not isinstance(kms_done, int) or kms_done < 0:
+            raise InvalidKms()
+        if kms_done > kms_allowed:
+            raise KmsExceeded()
         if assurance not in ("basic", "medium", "premium"):
             raise InvalidAssurance()
 
@@ -22,7 +26,7 @@ class Rental:
         self.__start_date = start_date
         self.__end_date = end_date
         self.__kms_allowed = kms_allowed
-        self.__kms_done = 0
+        self.__kms_done = kms_done
         self.__assurance = assurance
 
     def get_rental_id(self):
