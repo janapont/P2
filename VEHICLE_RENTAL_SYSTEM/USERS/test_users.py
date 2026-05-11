@@ -41,6 +41,18 @@ class TestUser(TestCase):
         with self.assertRaises(InvalidDateOfBirth):
             ConcreteUser("Ana Garcia", date(2100, 1, 1))
 
+    def test_invalid_user_id_negative(self):
+        with self.assertRaises(ValueError):
+            ConcreteUser("Ana Garcia", date(2007, 6, 20), -1)
+
+    def test_invalid_user_id_string(self):
+        with self.assertRaises(ValueError):
+            ConcreteUser("Ana Garcia", date(2007, 6, 20), "1")
+
+    def test_invalid_user_id_boolean(self):
+        with self.assertRaises(ValueError):
+            ConcreteUser("Ana Garcia", date(2007, 6, 20), True)
+
     def test_get_age(self):
         user = ConcreteUser("Ana Garcia", date(2007, 6, 20))
         today = date.today()

@@ -13,6 +13,9 @@ class User(ABC):
             User.__counter += 1
             self.__id = User.__counter
         else:
+            if not isinstance(user_id, int) or isinstance(user_id, bool) or user_id <= 0:
+                raise ValueError("User ID must be a positive integer.")
+
             self.__id = user_id
             if user_id > User.__counter:
                 User.__counter = user_id

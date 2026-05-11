@@ -4,6 +4,9 @@ from custom_exceptions import (
     InvalidMatriculationDateError,
     InvalidMileageError,
     MileageCannotDecreaseError,
+    InvalidBrandError,
+    InvalidColorError,
+    InvalidModelError,
 )
 
 from datetime import date
@@ -20,6 +23,14 @@ class Vehicle(ABC):
         if not isinstance(matriculation_date, date) or matriculation_date > date.today():
             raise InvalidMatriculationDateError()
                 
+        if not isinstance(brand, str) or brand.strip() == "":
+            raise InvalidBrandError()
+
+        if not isinstance(color, str) or color.strip() == "":
+            raise InvalidColorError()
+
+        if not isinstance(model, str) or model.strip() == "":
+            raise InvalidModelError()
         self.__brand = brand
         self.__color = color
         self.__license_plate = license_plate

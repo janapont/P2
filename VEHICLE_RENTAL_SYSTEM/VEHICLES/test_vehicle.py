@@ -7,7 +7,10 @@ from custom_exceptions import (
     InvalidMatriculationDateError,
     InvalidMileageError,
     MileageCannotDecreaseError,
-)
+    InvalidBrandError,
+    InvalidColorError,
+    InvalidModelError,
+    )
 
 class _DummyVehicle(Vehicle):
     def calculate_ITV(self):
@@ -87,7 +90,18 @@ class TestVehicleCreation(unittest.TestCase):
         v = _DummyVehicle("Seat", "red", "1234ABC", "Ibiza", date(2020, 1, 1), 0)
         self.assertEqual(v.get_mileage(), 0)
 
+    def test_invalid_brand_empty(self):
+        with self.assertRaises(InvalidBrandError):
+            _DummyVehicle("", "red", "1234ABC", "Ibiza", date(2020, 1, 1), 0)
 
+    def test_invalid_color_empty(self):
+        with self.assertRaises(InvalidColorError):
+            _DummyVehicle("Seat", "", "1234ABC", "Ibiza", date(2020, 1, 1), 0)
+
+    def test_invalid_model_empty(self):
+        with self.assertRaises(InvalidModelError):
+            _DummyVehicle("Seat", "red", "1234ABC", "", date(2020, 1, 1), 0)
+            
 class TestVehicleUpdateInfo(unittest.TestCase):
 
     def setUp(self):
