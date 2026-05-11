@@ -125,6 +125,75 @@ class ShopManagement:
 
     def get_vehicles(self):
         return self.__vehicles
+    
+    def update_vehicle_info(self, license_plate, brand=None, color=None, model=None, mileage=None):
+        vehicle = self.find_vehicle(license_plate)
+        vehicle.update_info(brand=brand, color=color, model=model, mileage=mileage)
+
+
+    def register_vehicle_maintenance(self, license_plate, maintenance_date, maintenance_mileage):
+        vehicle = self.find_vehicle(license_plate)
+        vehicle.register_maintenance(maintenance_date, maintenance_mileage)
+
+
+    def update_client_info(self, client_id, name=None, date_of_birth=None):
+        client = self.find_client(client_id)
+
+        if name is not None:
+            client.update_name(name)
+
+        if date_of_birth is not None:
+            client.update_date_of_birth(date_of_birth)
+
+
+    def register_vehicle_to_client(self, client_id, license_plate):
+        client = self.find_client(client_id)
+        vehicle = self.find_vehicle(license_plate)
+        client.add_vehicle(vehicle)
+
+
+    def remove_vehicle_from_client(self, client_id, license_plate):
+        client = self.find_client(client_id)
+        vehicle = self.find_vehicle(license_plate)
+        client.remove_vehicle(vehicle)
+
+
+    def update_client_vehicle_kms(self, client_id, license_plate, kms):
+        client = self.find_client(client_id)
+        client.update_vehicle_kms(license_plate, kms)
+
+
+    def get_client_vehicle_next_itv(self, client_id, license_plate):
+        client = self.find_client(client_id)
+        return client.get_next_itv(license_plate)
+
+
+    def get_client_vehicle_next_maintenance(self, client_id, license_plate):
+        client = self.find_client(client_id)
+        return client.get_next_maintenance(license_plate)
+
+
+    def update_worker_info(self, worker_id, name=None, date_of_birth=None, role=None):
+        worker = self.find_worker(worker_id)
+
+        if name is not None:
+            worker.update_name(name)
+
+        if date_of_birth is not None:
+            worker.update_date_of_birth(date_of_birth)
+
+        if role is not None:
+            worker.update_role(role)
+
+
+    def add_kms_to_rental(self, rental_id, kms):
+        rental = self.find_rental(rental_id)
+        rental.add_kms(kms)
+
+
+    def update_rental_assurance(self, rental_id, assurance):
+        rental = self.find_rental(rental_id)
+        rental.update_assurance(assurance)
 
     def load_vehicles_csv(self):
         if not os.path.exists(self.__vehicles_csv_path):

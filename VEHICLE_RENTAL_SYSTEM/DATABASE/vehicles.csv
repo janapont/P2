@@ -1,0 +1,2 @@
+type,brand,color,license_plate,model,matriculation_date,mileage,last_maintenance_date,last_maintenance_mileage
+Truck,Volvo,White,9012GHI,FH16,2018-03-10,200000,,
