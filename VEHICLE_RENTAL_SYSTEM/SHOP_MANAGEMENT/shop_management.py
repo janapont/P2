@@ -217,7 +217,7 @@ class ShopManagement:
         self.save_vehicles_csv()
         self.save_clients_csv()
         self.save_workers_csv()
-        self.save_csv()
+        self.save_rentals_csv()
         
     def load_all_csv(self):
         self.load_vehicles_csv()
